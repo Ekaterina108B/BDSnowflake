@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: database
+    env_file:
+      - db.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./исходные данные:/csv_data:ro 
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
